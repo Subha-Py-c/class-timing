@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="45">
+
+    <title>Class Schedule</title>
+    <style>
+        body {
+            color: #00ffa2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+        }
+
+        #result {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(47, 42, 42);">
+    <h1>Class Schedule</h1>
+    <button onclick="getNextClass()">Next Class</button>
+    <br>
+    <br>
+    <br>
+    <a style="color: aqua;" href="https://subha-py-c.github.io/class-timing/" target="_blank" title="See Full Schedule">
+        See Full Schedule
+    </a>
+    <div id="result"></div>
+
+    <script>
+        var json_schedule = {
+            "college": "IIEST, Shibpur",
+            "time_table": {
+              "semester": "B.TECH (V-VIII) - 2 SEMESTER",
+              "academic_year": "AY (2023-2024)",
+              "start_date": "18.12.2023",
+              "days": {
+                "MONDAY": [
+                  {"09:00 - 09:55": "Basic Electrical Engineering (EE 1201)[U413]"},
+                  {"09:55 - 10:50": "Physics (PH 1201) [U413]"},
+                  {"10:50 - 11:45": "Physics (PH 1201) [U413]"},
+                  {"11:45 - 12:40": "No classes Present"},
+                  {"13:50 - 16:35": "6A: Physics Lab / 6B: Basic Electrical Engineering Laboratory (EE1271)"}
+                ],
+                "TUESDAY": [
+                  {"09:00 - 09:55": "Ecology & Environment (CE 1201) [U 802]"},
+                  {"09:55 - 10:50": "Ecology & Environment (CE 1201) [U 802]"},
+                  {"10:50 - 11:45": "No Classes Present"},
+                  {"11:45 - 12:40": "Basic Electrical Engineering [U513]"},
+                  {"13:50 - 14:45": "Sociology & Professional Ethics (HU 1202) [U413]"},
+                  {"14:45 - 15:40": "Sociology & Professional Ethics (HU 1202) [U413]"},
+                  {"15:40 - 16:35": "Mathematics - I(MA 1201) [802]"}
+                ],
+                "WEDNESDAY": [
+                  {"09:00 - 09:55": "No classes Present"},
+                  {"09:55 - 10:50": "Sociology & Professional Ethics (HU 1202) [U513]"},
+                  {"10:50 - 11:45": "Sociology & Professional Ethics (HU 1202) [U513]"},
+                  {"11:45 - 12:40": "Mathematics - I(MA 1201) [U513]"},
+                  {"13:50 - 14:45": "Ecology & Environment (CE 1201) [U413]"},
+                  {"14:45 - 15:40": "NSS/NCC/PT/Yoga"},
+                  {"15:40 - 16:35": "No classes Present"}
+                ],
+                "THURSDAY": [
+                  {"09:00 - 09:55": "No classes Present"},
+                  {"09:55 - 10:50": "Sociology & Professional Ethics (HU 1202) [U513]"},
+                  {"10:50 - 11:45": "Mathematics - I(MA 1201) [U513]"},
+                  {"11:45 - 12:40": "Mathematics - I(MA 1201) [U513]"},
+                  {"13:50 - 16:35": "6B: Physics Lab / 6A: Basic Electrical Engineering Laboratory (EE1271)"}
+                ],
+                "FRIDAY": [
+                  {"09:00 - 09:55": "No classes Present"},
+                  {"09:55 - 10:50": "Physics (PH 1201) [U413]"},
+                  {"10:50 - 11:45": "Physics (PH 1201) [U413]"},
+                  {"11:45 - 12:40": "No classes Present"},
+                  {"13:50 - 16:35": "Workshop (WS 1271)"}
+                ]
+              }
+            }
+          }
+
+        function getNextClass() {
+            var schedule = JSON.parse(JSON.stringify(json_schedule));
+
+            var result = findNextClass(schedule);
+
+            document.getElementById("result").innerHTML = result;
+        }
+
+        function findNextClass(schedule) {
+            var current_time = new Date();
+            var current_day = current_time.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+
+            if (current_day in schedule["time_table"]["days"]) {
+                var today_schedule = schedule["time_table"]["days"][current_day];
+                for (var i = 0; i < today_schedule.length; i++) {
+                    var class_time_str = Object.keys(today_schedule[i])[0];
+                    var class_start_time_str = class_time_str.split(" - ")[0];
+
+                    var class_start_time = new Date(current_time.toDateString() + ' ' + class_start_time_str);
+
+                    if (class_start_time > current_time) {
+                        var time_left = getTimeLeft(class_start_time);
+                        var class_name = today_schedule[i][class_time_str];
+                        var building_name = class_name.split('[')[1].split(']')[0];
+                        return `The next class is at ${class_start_time_str} in building ${building_name}.\nClass name: ${class_name}.\nTime left: ${time_left}`;
+                    }
+                }
+                return "No more classes for today.";
+            }
+            return "No classes scheduled for today.";
+        }
+
+        function getTimeLeft(endTime) {
+            var timeDiff = endTime - new Date();
+            var hours = Math.floor(timeDiff / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            return `${hours}:${minutes}:${seconds}`;
+        }
+    </script>
+</body>
+</html>
