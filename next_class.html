@@ -3,111 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="45">
-
     <title>Class Schedule</title>
     <style>
         body {
             color: #00ffa2;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
             text-align: center;
-            margin: 40px;
+            margin: 80px;
+            background-color: #222;
+        }
+
+        h1 {
+            color: #00f7ff;
+            font-size: 3em;
+        }
+
+        button {
+            background-color: #00ffa2;
+            color: #222;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #009c80;
+        }
+
+        a {
+            color: rgb(255, 200, 0);
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: block;
         }
 
         #result {
-            margin-top: 30px;
+            margin-top: 20px;
+            font-size: 1.2em;
         }
     </style>
 </head>
-<body style="background-color: rgb(47, 42, 42);">
+<body>
     <h1>Class Schedule</h1>
     <button onclick="getNextClass()">Next Class</button>
-    <br>
-    <br>
-    <br>
-    <a style="color: aqua;" href="https://subha-py-c.github.io/class-timing/" target="_blank" title="See Full Schedule">
+    <a href="https://subha-py-c.github.io/class-timing/" target="_blank" title="See Full Schedule of 2nd sem grp 6">
         See Full Schedule
     </a>
+    <br>
+    <br>
     <div id="result"></div>
 
     <script>
-        var json_schedule = {
-            "college": "IIEST, Shibpur",
-            "time_table": {
-              "semester": "B.TECH (V-VIII) - 2 SEMESTER",
-              "academic_year": "AY (2023-2024)",
-              "start_date": "18.12.2023",
-              "days": {
-                "MONDAY": [
-                  {"09:00 - 09:55": "Basic Electrical Engineering (EE 1201)[U 413]"},
-                  {"09:55 - 11:45": "Physics (PH 1201) [U 413]"},
-                  {"13:50 - 16:35": "6A: Physics Lab / 6B: Basic Electrical Engineering Laboratory (EE1271) [U 000]"}
-                ],
-                "TUESDAY": [
-                  {"09:00 - 10:50": "Ecology & Environment (CE 1201) [U 802]"},
-                  {"11:45 - 12:40": "Basic Electrical Engineering [U513]"},
-                  {"13:50 - 15:40": "Sociology & Professional Ethics (HU 1202) [U 413]"},
-                  {"15:40 - 16:35": "Mathematics - I(MA 1201) [U802]"}
-                ],
-                "WEDNESDAY": [
-                  {"09:55 - 11:45": "Sociology & Professional Ethics (HU 1202) [U513]"},
-                  {"11:45 - 12:40": "Mathematics - I(MA 1201) [U513]"},
-                  {"13:50 - 14:45": "Ecology & Environment (CE 1201) [U413]"},
-                  {"14:45 - 15:40": "NSS/NCC/PT/Yoga [U000]"}
-                ],
-                "THURSDAY": [
-                  {"09:55 - 10:50": "Sociology & Professional Ethics (HU 1202) [U513]"},
-                  {"10:50 - 12:40": "Mathematics - I(MA 1201) [U513]"},
-                  {"13:50 - 16:35": "6B: Physics Lab / 6A: Basic Electrical Engineering Laboratory (EE1271) [U000]"}
-                ],
-                "FRIDAY": [
-                  {"09:55 - 11:45": "Physics (PH 1201) [U413]"},
-                  {"13:50 - 16:35": "Workshop (WS 1271) [U000]"}
-                ]
-              }
-            }
+      var json_schedule = {
+        "college": "IIEST, Shibpur",
+        "time_table": {
+          "semester": "B.TECH (V-VIII) - 2 SEMESTER",
+          "academic_year": "AY (2023-2024)",
+          "start_date": "18.12.2023",
+          "days": {
+            "MONDAY": [
+              {"09:00 - 09:55": "Basic Electrical Engineering (EE 1201)[U 413]"},
+              {"09:55 - 11:45": "Physics (PH 1201) [U 413]"},
+              {"13:50 - 16:35": "6A: Physics Lab / 6B: Basic Electrical Engineering Laboratory (EE1271) [ None ]"}
+            ],
+            "TUESDAY": [
+              {"09:00 - 10:50": "Ecology & Environment (CE 1201) [U 802]"},
+              {"11:45 - 12:40": "Basic Electrical Engineering [U513]"},
+              {"13:50 - 15:40": "Sociology & Professional Ethics (HU 1202) [U 413]"},
+              {"15:40 - 16:35": "Mathematics - I(MA 1201) [U802]"}
+            ],
+            "WEDNESDAY": [
+              {"09:55 - 11:45": "Sociology & Professional Ethics (HU 1202) [U513]"},
+              {"11:45 - 12:40": "Mathematics - I(MA 1201) [U513]"},
+              {"13:50 - 14:45": "Ecology & Environment (CE 1201) [U413]"},
+              {"14:45 - 15:40": "NSS/NCC/PT/Yoga [ None ]"}
+            ],
+            "THURSDAY": [
+              {"09:55 - 10:50": "Sociology & Professional Ethics (HU 1202) [U513]"},
+              {"10:50 - 12:40": "Mathematics - I(MA 1201) [U513]"},
+              {"13:50 - 16:35": "6B: Physics Lab / 6A: Basic Electrical Engineering Laboratory (EE1271) [ None ]"}
+            ],
+            "FRIDAY": [
+              {"09:55 - 11:45": "Physics (PH 1201) [U413]"},
+              {"13:50 - 16:35": "Workshop (WS 1271) [ None ]"}
+            ]
           }
-
-        function getNextClass() {
-            var schedule = JSON.parse(JSON.stringify(json_schedule));
-
-            var result = findNextClass(schedule);
-
-            document.getElementById("result").innerHTML = result;
         }
+      }
 
-        function findNextClass(schedule) {
-            var current_time = new Date();
-            var current_day = current_time.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+      function getNextClass() {
+          var schedule = JSON.parse(JSON.stringify(json_schedule));
 
-            if (current_day in schedule["time_table"]["days"]) {
-                var today_schedule = schedule["time_table"]["days"][current_day];
-                for (var i = 0; i < today_schedule.length; i++) {
-                    var class_time_str = Object.keys(today_schedule[i])[0];
-                    var class_start_time_str = class_time_str.split(" - ")[0];
+          var result = findNextClass(schedule);
 
-                    var class_start_time = new Date(current_time.toDateString() + ' ' + class_start_time_str);
+          document.getElementById("result").innerHTML = result;
+      }
 
-                    if (class_start_time > current_time) {
-                        var time_left = getTimeLeft(class_start_time);
-                        var class_name = today_schedule[i][class_time_str];
-                        var building_name = class_name.split('[')[1].split(']')[0];
-                        return `The next class is at ${class_start_time_str} in building ${building_name}.\nClass name: ${class_name}.\nTime left: ${time_left}`;
-                    }
-                }
-                return "No more classes for today.";
-            }
-            return "No classes scheduled for today.";
-        }
+      function findNextClass(schedule) {
+          var current_time = new Date();
+          var current_day = current_time.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
 
-        function getTimeLeft(endTime) {
-            var timeDiff = endTime - new Date();
-            var hours = Math.floor(timeDiff / (1000 * 60 * 60));
-            var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+          if (current_day in schedule["time_table"]["days"]) {
+              var today_schedule = schedule["time_table"]["days"][current_day];
+              for (var i = 0; i < today_schedule.length; i++) {
+                  var class_time_str = Object.keys(today_schedule[i])[0];
+                  var class_start_time_str = class_time_str.split(" - ")[0];
 
-            return `${hours}:${minutes}:${seconds}`;
-        }
+                  var class_start_time = new Date(current_time.toDateString() + ' ' + class_start_time_str);
+
+                  if (class_start_time > current_time) {
+                      var time_left = getTimeLeft(class_start_time);
+                      var class_name = today_schedule[i][class_time_str];
+                      var building_name = class_name.split('[')[1].split(']')[0];
+                      return `The next class is at ${class_start_time_str} in building ${building_name}.<br>Class name: ${class_name}.<br>Time left: ${time_left}`;
+                  }
+              }
+
+              // If no more classes for today, find the next class date and name for tomorrow
+              var nextDay = new Date();
+              nextDay.setDate(current_time.getDate() + 1);
+              var nextDayName = nextDay.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+
+              if (nextDayName in schedule["time_table"]["days"]) {
+                  var nextDaySchedule = schedule["time_table"]["days"][nextDayName][0];
+                  var nextClassTime = Object.keys(nextDaySchedule)[0];
+                  var nextClassName = nextDaySchedule[nextClassTime];
+
+                  return `No more classes for today.<br><br>Next class is on ${nextDayName} at ${nextClassTime}.<br>Class name: ${nextClassName}`;
+              } else {
+                  return "No classes scheduled for today or tomorrow.<br>";
+              }
+          }
+          return "No classes scheduled for today.<br>";
+      }
+
+      function getTimeLeft(endTime) {
+          var timeDiff = endTime - new Date();
+          var hours = Math.floor(timeDiff / (1000 * 60 * 60));
+          var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+          return `${hours}:${minutes}:${seconds}`;
+      }
     </script>
 </body>
 </html>
