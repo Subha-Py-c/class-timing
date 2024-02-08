@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+
+body {
+    color: #00ffa2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    margin: 80px;
+    background-color: #222;
+}
+
+h1 {
+    color: #00f7ff;
+    font-size: 3em;
+}
+
+button {
+    background-color: #00ffa2;
+    /* make the button round cornered */
+    border-radius: 3px;
+    color: #222;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #009c80;           
+}
+
+a {
+    color: rgb(255, 200, 0);
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-top: 20px;
+    display: block;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+section {
+    display: grid;
+    place-items: center; 
+    align-content: center; 
+    min-height: 43vh;
+}
+
+.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1s ;
+}
+
+.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.logos{
+    display: flex;
+}
+
+.logo:nth-child(2){
+    transition-delay: 200ms;
+}
+.logo:nth-child(3){
+    transition-delay: 350ms;
+}
+.logo:nth-child(4){
+    transition-delay: 500ms;
+}
+.logo{
+    background-color: #131316;
+    border-radius: 4;
+    padding: 1rem;
+    margin: 0 0.5rem;
+}
+.logo img {
+    max-width: 320px;
+    max-height: 200px;
+}

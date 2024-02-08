@@ -1,0 +1,37 @@
+{
+    "college": "IIEST, Shibpur",
+    "time_table": {
+      "semester": "B.TECH (V-VIII) - 2 SEMESTER",
+      "academic_year": "AY (2023-2024)",
+      "start_date": "18.12.2023",
+      "days": {
+        "MONDAY": [
+          {"09:00 - 09:55": "Basic Electrical Engineering (EE 1201)[U 413]"},
+          {"09:55 - 11:45": "Physics (PH 1201) [U 413]"},
+          {"13:50 - 16:35": "6A: Physics Lab / 6B: Basic Electrical Engineering Laboratory (EE1271) [ None ]"}
+        ],
+        "TUESDAY": [
+          {"09:00 - 10:50": "Ecology & Environment (CE 1201) [U 802]"},
+          {"11:45 - 12:40": "Basic Electrical Engineering [U513]"},
+          {"13:50 - 15:40": "Sociology & Professional Ethics (HU 1202) [U 413]"},
+          {"15:40 - 16:35": "Mathematics - I(MA 1201) [U802]"}
+        ],
+        "WEDNESDAY": [
+          {"09:55 - 11:45": "Sociology & Professional Ethics (HU 1202) [U513]"},
+          {"11:45 - 12:40": "Mathematics - I(MA 1201) [U513]"},
+          {"13:50 - 14:45": "Ecology & Environment (CE 1201) [U413]"},
+          {"14:45 - 15:40": "NSS/NCC/PT/Yoga [ None ]"}
+        ],
+        "THURSDAY": [
+          {"09:55 - 10:50": "Sociology & Professional Ethics (HU 1202) [U513]"},
+          {"10:50 - 12:40": "Mathematics - I(MA 1201) [U513]"},
+          {"13:50 - 16:35": "6B: Physics Lab / 6A: Basic Electrical Engineering Laboratory (EE1271) [ None ]"}
+        ],
+        "FRIDAY": [
+          {"09:55 - 11:45": "Physics (PH 1201) [U413]"},
+          {"13:50 - 16:35": "Workshop (WS 1271) [ None ]"}
+        ]
+      }
+    }
+}
+  
