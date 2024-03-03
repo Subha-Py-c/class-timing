@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can You Find It?</title>
+    <style>
+        body{
+            background-image: url('https://i.imgur.com/ptISDIg.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        section{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15vh;
+            /* color: rgb(255, 255, 255); */
+            background-color: rgba(47, 46, 46, 0.0);
+        }
+        section h1{
+            font-size: 3.7em;
+        }
+        /* <!-- id cannot be numeric --> */
+        #six{
+            color:bisque;
+        }
+        #ss{
+            color: #ffffff;
+            font-size: 2.1em;
+        }
+        #seven{
+            color: rgb(255, 255, 255);
+        }
+        #first{
+            color: #ffffff;
+        }
+        #last{
+            color: #ffffff;
+        }
+        #n{
+            font-size: .8em;
+            font-family: 'Times New Roman', Times, serif;
+            background: linear-gradient(to right,skyblue,red);
+        }
+        a:active{
+            color: red;
+        }
+        a:hover{
+            color: #ffffff;
+        }
+        a{
+            color:#ffffff;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElement = document.getElementById('animatedElement');
+            let opacity = 1;
+            const interval = 47000 / 47; 
+
+            const animation = setInterval(function() {
+                if (opacity <= 0) {
+                    clearInterval(animation);
+                } else {
+                    opacity -= 0.02; 
+                    animatedElement.style.opacity = opacity;
+                }
+            }, interval);
+        });
+    </script>
+</head>
+<body id="animatedElement">
+    <!-- 1 -->
+    <section>
+        <h1 id="first">Congrats!</h1>
+        <p id="ss">So you have got it.</p>
+    </section>
+    <!-- 2 -->
+    <section>
+        <h1 id="first">Message:</h1>
+        <p id="ss">{encoded message}<br>decode <a href="https://subha-py-c.github.io/Secret-message/">here</a></p>
+    </section>
+    <!-- 3 -->
+    <section>
+        <h1><span id="n">Scroll Down</span></h1>
+        <p></p>
+    </section>
+    <!-- 4 -->
+    <section>
+        <h1 style="color: #ffffff;">ה</h1>
+        <p></p>
+    </section>
+    <!-- 5 -->
+    <section>
+        
+    </section>
+    <!-- 6 will convey the message -->
+    <section>
+        <div id="six"><h1 >FIND THE HIDDEN MESSAGE</h1></div>
+        <p id="ss">   The message will disapear in 47 seconds</p>
+    </section>
+    <!-- 7 -->
+    <section>
+        <h1 id="seven">הטכנולוגיה</h1>
+    </section>
+    <!-- 8 -->
+    <section id="last">
+        <h1>היום הוא יום מלא בחופש </h1>
+        <p>בעוד שאנחנו מתנהגים באופן מודרני ומתקדמי, אנחנו לא משכחים להתערב בחיים האישיים והקשורים לחברה.</p>
+    </section>
+</body>
+</html>
