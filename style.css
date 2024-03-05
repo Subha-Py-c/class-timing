@@ -39,6 +39,13 @@ a {
     display: block;
 }
 
+a:hover{
+    color:crimson;
+}
+
+a:active{
+    color: bisque;
+}
 #result {
     margin-top: 20px;
     font-size: 1.2em;
