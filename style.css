@@ -7,7 +7,7 @@ body {
     font-size: 15px;
     text-align: center;
     margin: 80px;
-    background-color: #222;
+    background-color: black;
 }
 
 h1 {
@@ -24,11 +24,16 @@ button {
     font-size: 1em;
     border: none;
     cursor: pointer;
+    box-shadow: 3px 3px 10px rgba(255,255,255,0.56);
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+/* button:hover {
     background-color: #009c80;           
+} */
+
+button:active{
+    box-shadow: none;
 }
 
 a {
@@ -93,4 +98,22 @@ section {
 .logo img {
     max-width: 320px;
     max-height: 200px;
+}
+
+@media screen and (max-width: 510px){
+    h1{
+        font-size: 1.4em;
+    }
+    body{
+        font-size: 15px;
+    }
+    button{
+        font-size: 0.8em;
+    }
+    #result{
+        font-size: 0.8em;
+    }
+    a{
+        font-size: 0.8em;
+    }
 }

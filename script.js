@@ -20,14 +20,21 @@ function findNextClass(schedule) {
         for (var i = 0; i < today_schedule.length; i++) {
             var class_time_str = Object.keys(today_schedule[i])[0];
             var class_start_time_str = class_time_str.split(" - ")[0];
+            var class_end_time_str = class_time_str.split(" - ")[1];
 
             var class_start_time = new Date(current_time.toDateString() + ' ' + class_start_time_str);
+            var class_end_time = new Date(current_time.toDateString() + ' ' + class_end_time_str);
 
-            if (class_start_time > current_time) {
+            if (class_start_time <= current_time && current_time <= class_end_time) {
+                var time_left = getTimeLeft(class_end_time);
+                var class_name = today_schedule[i][class_time_str];
+                var building_name = class_name.split('[')[1].split(']')[0];
+                return `Ongoing class at ${class_start_time_str} in building ${building_name}.<br>Class name: ${class_name}.<br>Time left: ${time_left}`;
+            } else if (class_start_time > current_time) {
                 var time_left = getTimeLeft(class_start_time);
                 var class_name = today_schedule[i][class_time_str];
                 var building_name = class_name.split('[')[1].split(']')[0];
-                return `The next class is at ${class_start_time_str} in building ${building_name}.<br>Class name: ${class_name}.<br>Time left: ${time_left}`;
+                return `Next class is at ${class_start_time_str} in building ${building_name}.<br>Class name: ${class_name}.<br>Time left: ${time_left}`;
             }
         }
 
