@@ -1,0 +1,5 @@
+node_modules/
+react-app/
+website/
+package.json
+package-lock.json
