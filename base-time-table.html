@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time-Table-Base</title>
+    <link rel="stylesheet" href="time-table.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{current.user.timetable_name}}</h1>
+
+      <table>
+        <tr class="heading">
+          <th>PERIODS</th>
+          <th>1st</th>
+          <th>2nd</th>
+          <th>3rd</th>
+          <!-- ... -->
+          <th>nth</th>
+        </tr>
+
+        <tr>
+          <td colspan="1" class="strong">TIME</td>
+          <td colspan="1">9:00 - 9:55</td>
+          <td colspan="1">9:55 - 10:50</td>
+          <td colspan="1">10:50 - 11:45</td>
+          <td colspan="1">11:45 - 12:40</td>
+          <td colspan="1">12:40 - 13:50</td>
+          <td colspan="1">13:50 - 14:45</td>
+          <td colspan="1">14:45 - 15:40</td>
+          <td colspan="1">15:40 - 16:35</td>
+        </tr>
+
+        <!--monday-->
+        <tr>
+          <td colspan="1" class="strong">MONDAY</td>
+          <td colspan="1">BEE</td>
+          <td colspan="2">physics</td>
+          <td colspan="1"></td>
+          <td colspan="1">break</td>
+          <td colspan="3">6A: physics lab<br />6B: BEE lab</td>
+        </tr>
+
+        <!--tuesday-->
+        <tr>
+          <td colspan="1" class="strong">TUESDAY</td>
+          <td colspan="1"></td>
+        </tr>
+
+        <!--wendnesday-->
+        <tr>
+          <td colspan="1" class="strong">WEDNESDAY</td>
+        </tr>
+
+        <!--thrusday-->
+        <tr>
+          <td colspan="1" class="strong">THURSDAY</td>
+        </tr>
+
+        <!--friday-->
+        <tr>
+          <td colspan="1" class="strong">FRIDAY</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
